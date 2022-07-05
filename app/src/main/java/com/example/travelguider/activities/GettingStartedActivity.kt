@@ -1,12 +1,13 @@
-package com.example.travelguider
+package com.example.travelguider.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import com.example.travelguider.R
 import kotlinx.android.synthetic.main.activity_getting_started.*
 
-class GettingStartedActivity : AppCompatActivity() {
+class GettingStartedActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_getting_started)
