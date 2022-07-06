@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.animation.AnimationUtils
 import com.example.travelguider.R
+import com.example.travelguider.firebase.FirestoreClass
 import kotlinx.android.synthetic.main.activity_splash.*
 import android.view.WindowManager.LayoutParams as LayoutParams1
 
@@ -22,7 +23,14 @@ text_animate.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slidedown)
         text_animate2.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slideup))
 
         Handler().postDelayed({
-            startActivity(Intent(this, GettingStartedActivity::class.java))
+            var currentUserID=FirestoreClass().getCurrentUserId()
+            if(currentUserID.isNotEmpty()){
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+            else{
+                startActivity(Intent(this, GettingStartedActivity::class.java))
+            }
+
             finish()
                                 },2500
         )
