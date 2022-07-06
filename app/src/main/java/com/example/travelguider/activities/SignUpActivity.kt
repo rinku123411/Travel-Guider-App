@@ -6,6 +6,8 @@ import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
 import com.example.travelguider.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : BaseActivity() {
@@ -36,7 +38,22 @@ class SignUpActivity : BaseActivity() {
         val email:String=signup_email.text.toString().trim{it<=' '}
         val Password:String=signup_password.text.toString()
         if (validateForm(name,email,Password)){
-            Toast.makeText(this,"User is registered",Toast.LENGTH_LONG).show()
+            showProgressDialog()
+            FirebaseAuth.getInstance()
+                .createUserWithEmailAndPassword(email,Password)
+                .addOnCompleteListener{
+                    task->hideProgressDialog()
+                    if(task.isSuccessful){
+                        val firebaseUser:FirebaseUser=task.result!!.user!!
+                        val registeredEmail=firebaseUser.email!!
+                        Toast.makeText(this,"$name is successfully registered",Toast.LENGTH_LONG).show()
+                        FirebaseAuth.getInstance().signOut()
+                        finish()
+                    }
+                    else{
+                        Toast.makeText(this,task.exception!!.message,Toast.LENGTH_LONG).show()
+                    }
+                }
         }
         else{
             Toast.makeText(this,"User is not registered",Toast.LENGTH_LONG).show()
