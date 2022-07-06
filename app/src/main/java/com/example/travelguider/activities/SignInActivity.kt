@@ -67,7 +67,6 @@ class SignInActivity : BaseActivity() {
 
     private fun validateForm(email:String,Password:String):Boolean{
         return when{
-
             TextUtils.isEmpty(email)->{
                 showErrorSnackBar("Please Enter the email")
                 false
