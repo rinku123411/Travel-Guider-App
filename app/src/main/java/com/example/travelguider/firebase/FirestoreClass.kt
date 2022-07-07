@@ -1,5 +1,7 @@
 package com.example.travelguider.firebase
 
+import android.app.Activity
+import com.example.travelguider.activities.MainActivity
 import com.example.travelguider.activities.SignInActivity
 import com.example.travelguider.activities.SignUpActivity
 import com.example.travelguider.models.User
@@ -18,11 +20,29 @@ class FirestoreClass {
                 activity.userRegisteredSuccess()
     }
 }
-    fun signInUser(activity: SignInActivity){
+    fun signInUser(activity: Activity){
         mFireStore.collection(Constant.USERS).document(getCurrentUserId()).get().addOnSuccessListener{
             document->
             val loggedInUser=document.toObject(User::class.java)!!
-            activity.signInSuccess(loggedInUser)
+            when (activity){
+                is SignInActivity->{
+                    activity.signInSuccess(loggedInUser)
+                }
+                is MainActivity->{
+                    activity.updateNavigationUserDetails(loggedInUser)
+                }
+            }
+
+        }.addOnFailureListener{
+            e->
+            when(activity){
+                is SignInActivity->{
+                    activity.hideProgressDialog()
+                }
+                is MainActivity->{
+                    activity.hideProgressDialog()
+                }
+            }
         }
     }
     fun getCurrentUserId():String{
