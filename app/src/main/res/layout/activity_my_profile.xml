@@ -73,7 +73,7 @@
                     <androidx.appcompat.widget.AppCompatEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/et_phone_number"
+                        android:id="@+id/et_mobile"
                         android:hint="Mobile"
                         android:inputType="phone"
                         android:textSize="18sp"/>
