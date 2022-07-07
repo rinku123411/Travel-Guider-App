@@ -3,14 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1835" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable-v24/nav_header_main_background.xml" value="0.1835" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable-v24/purple_button.xml" value="0.1835" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable/blue_button.xml" value="0.121" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable/color_button.xml" value="0.1955" />
+        <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable/green_button.xml" value="0.1835" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable/ic_action_navigationbar.xml" value="0.1835" />
+        <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1835" />
+        <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable/ic_nav_sign_out.xml" value="0.1835" />
+        <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable/ic_nav_user.xml" value="0.1835" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/drawable/white_button.xml" value="0.1955" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/layout/activity_getting_started.xml" value="0.25" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Android/TravelGuider/app/src/main/res/layout/activity_my_profile.xml" value="0.25" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/layout/activity_sign_in.xml" value="0.25" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Android/TravelGuider/app/src/main/res/layout/activity_splash.xml" value="0.25" />

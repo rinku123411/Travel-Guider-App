@@ -53,7 +53,7 @@ class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedLis
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_my_profile -> {
-                Toast.makeText(this, "profile Section", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this,MyProfileActivity::class.java))
             }
             R.id.nav_sign_out -> {
                 FirebaseAuth.getInstance().signOut()
