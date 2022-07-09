@@ -18,6 +18,9 @@ import com.bumptech.glide.Glide
 import com.example.travelguider.R
 import com.example.travelguider.firebase.FirestoreClass
 import com.example.travelguider.models.User
+import com.example.travelguider.utils.Constants
+import com.example.travelguider.utils.Constants.IMAGE
+
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_my_profile.*
@@ -33,6 +36,7 @@ class MyProfileActivity : BaseActivity() {
 
     private var mSelectedImageFileUri: Uri?=null
     private var mProfileImageURL:String=""
+    private lateinit var mUserDetails:User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +54,13 @@ class MyProfileActivity : BaseActivity() {
             }
         }
         update_btn.setOnClickListener{
-            uploadUserImage()
+            if(mSelectedImageFileUri!=null){
+                uploadUserImage()
+            }
+            else{
+                showProgressDialog()
+                updateUserProfileData()
+            }
         }
     }
 
@@ -104,6 +114,7 @@ class MyProfileActivity : BaseActivity() {
         toolbar_my_profile_activity.setNavigationOnClickListener{onBackPressed()}
     }
     fun setUserDataInUI(user:User){
+        mUserDetails=user
 
         Glide
             .with(this@MyProfileActivity)
@@ -131,7 +142,7 @@ class MyProfileActivity : BaseActivity() {
                 taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
                     uri->
                     mProfileImageURL=uri.toString()
-                    //updateUserProfileData()
+                    updateUserProfileData()
                     hideProgressDialog()
 
                 }
@@ -141,5 +152,29 @@ class MyProfileActivity : BaseActivity() {
                 hideProgressDialog()
             }
         }
+    }
+    fun updateUserProfileData(){
+        var userHashMap=HashMap<String,Any>()
+        var anyChanges=false
+        if(mProfileImageURL.isNotEmpty()&& mProfileImageURL!=mUserDetails.image){
+            userHashMap[com.example.travelguider.utils.Constants.IMAGE]=mProfileImageURL
+            anyChanges=true
+        }
+        if(et_name.text.toString()!=mUserDetails.name){
+            userHashMap[com.example.travelguider.utils.Constants.NAME]=et_name.text.toString()
+            anyChanges=true
+        }
+        if(et_mobile.text.toString()!=mUserDetails.mobile.toString()){
+            userHashMap[com.example.travelguider.utils.Constants.MOBILE]=et_mobile.text.toString().toLong()
+            anyChanges=true
+        }
+        if(anyChanges)
+        FirestoreClass().updateUserProfileData(this,userHashMap)
+    }
+
+    fun profileUpdateSuccess()
+    {
+        hideProgressDialog()
+        finish()
     }
 }
