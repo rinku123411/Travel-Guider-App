@@ -1,5 +1,6 @@
 package com.example.travelguider.activities
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,9 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedListener {
+    companion object{
+        const val MY_PROFILE_REQUEST_CODE=100
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,10 +54,20 @@ class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedLis
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode== Activity.RESULT_OK && requestCode== MY_PROFILE_REQUEST_CODE){
+            FirestoreClass().signInUser(this)
+        }
+        else{
+            Toast.makeText(this,"No update",Toast.LENGTH_LONG).show()
+        }
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_my_profile -> {
-                startActivity(Intent(this,MyProfileActivity::class.java))
+                startActivityForResult(Intent(this,MyProfileActivity::class.java), MY_PROFILE_REQUEST_CODE)
             }
             R.id.nav_sign_out -> {
                 FirebaseAuth.getInstance().signOut()
@@ -73,6 +87,7 @@ class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedLis
             .centerCrop()
             .placeholder(R.drawable.ic_user_place_holder)
             .into(nav_user_image);
+        tv_username.text=user.name
     }
 
 }

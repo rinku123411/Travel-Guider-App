@@ -172,9 +172,9 @@ class MyProfileActivity : BaseActivity() {
         FirestoreClass().updateUserProfileData(this,userHashMap)
     }
 
-    fun profileUpdateSuccess()
-    {
+    fun profileUpdateSuccess() {
         hideProgressDialog()
+        setResult(Activity.RESULT_OK)
         finish()
     }
 }
