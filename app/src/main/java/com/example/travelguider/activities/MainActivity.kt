@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.auth.User
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.main_content.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedListener {
@@ -28,6 +29,9 @@ class MainActivity : BaseActivity() , NavigationView.OnNavigationItemSelectedLis
         setupActionBar()
         nav_view.setNavigationItemSelectedListener(this)
         FirestoreClass().signInUser(this)
+        location_btn.setOnClickListener {
+            startActivity(Intent(this,MapsActivity::class.java))
+        }
     }
     private fun setupActionBar(){
         setSupportActionBar(toolbar_main_activity)

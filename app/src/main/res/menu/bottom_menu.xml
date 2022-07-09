@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_market"
+        android:icon="@drawable/ic_shopping"
+        android:title="Market"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_returant"
+        android:icon="@drawable/ic_resturant"
+        android:title="Restaurant"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_tourist_place"
+        android:icon="@drawable/ic_tourist_place"
+        android:title="Tourist Place"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
+    <item android:id="@+id/action_Movie"
+        android:icon="@drawable/ic_cinema"
+        android:title="Cinema"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
+
+
+</menu>

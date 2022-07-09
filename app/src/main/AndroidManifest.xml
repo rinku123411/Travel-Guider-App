@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.travelguider">
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    package="com.example.travelguider" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +16,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelGuider"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBReAfKcZUJz4xFqmTvdgOXddNECt2xCck" />
+
+
+        <activity
+            android:name=".activities.MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/NoActionBar"/>
         <activity
             android:name=".activities.MyProfileActivity"
             android:exported="false"
@@ -24,8 +47,7 @@
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".activities.BaseActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".activities.SignUpActivity"
             android:exported="false"
@@ -45,7 +67,7 @@
             android:name=".activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="fullSensor"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,7 +78,7 @@
             android:name=".activities.MainActivity"
             android:exported="true"
             android:screenOrientation="fullSensor"
-            android:theme="@style/NoActionBar">
+            android:theme="@style/NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
